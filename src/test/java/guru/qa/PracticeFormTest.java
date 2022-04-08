@@ -14,6 +14,7 @@ import java.io.File;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
 
 
 public class PracticeFormTest {
@@ -45,7 +46,7 @@ public class PracticeFormTest {
         $(".react-datepicker__month-select").selectOption("December");
         $(".react-datepicker__year-select").selectOption("2022");
         $("[aria-label$='December 2nd, 2022']").click();
-        $x("//input[@type='file']").uploadFile(new File("C:/Users/User/IdeaProjects/first-test/src/resources/20.jpg"));
+        $x("//input[@type='file']").uploadFile(new File("src/test/resources/20.jpg"));
         $("[id= currentAddress]").setValue("AnyWhere...");
         $("[id=state]").click();
         $("[id=stateCity-wrapper]").$(byText("NCR")).click();
