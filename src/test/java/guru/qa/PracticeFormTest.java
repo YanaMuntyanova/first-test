@@ -19,15 +19,17 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class PracticeFormTest {
 
+
+
     @BeforeAll
     static void setUp() {
         Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = ("1920x1080");
-       /* System.setProperty("webdriver.chrome.driver", "C:/Users/User/IdeaProjects/first-test/build/downloads/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:/Users/User/IdeaProjects/first-test/build/downloads/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        WebDriverRunner.setWebDriver(driver);*/
+        WebDriverRunner.setWebDriver(driver);
 
     }
 
