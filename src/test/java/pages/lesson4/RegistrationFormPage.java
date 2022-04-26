@@ -1,4 +1,5 @@
-package guru.qa;
+package pages.lesson4;
+
 import com.codeborne.selenide.Condition;
 
 import java.io.File;
@@ -21,6 +22,7 @@ public class RegistrationFormPage {
     public void setCurrentAddress(String currentAddress) {  $("[id=currentAddress]").setValue(currentAddress); }
     public void setGender(String gender) { $("#genterWrapper").$(byText(gender)).click(); }
     public void setSubjects(String subjects) {$("#subjectsInput").setValue(subjects).pressEnter(); }
+
     public void setHobbiesWrapper(String hobbies) { $("#hobbiesWrapper").$(byText(hobbies)).click();}
 
     public void setDateOfBirth(String month, String year, String day) {
@@ -29,7 +31,7 @@ public class RegistrationFormPage {
         $(".react-datepicker__year-select").selectOption(year);
         $(".react-datepicker__day--0" + day +
                 ":not(.react-datepicker__day--outside-month)").click();
-      //  $("[aria-label$='December 2nd, 2022']").click();
+
     }
     public void setFileinput() {$x("//input[@type='file']").uploadFile(new File("src/test/resources/20.jpg"));}
     public void setState(String state, String city) {
@@ -45,7 +47,7 @@ public class RegistrationFormPage {
                                String userNumber, String hobbies, String currentAddress)
     {
         $(".table-responsive").shouldHave(text(firstName), text(lastName), text(userEmail),
-        text(gender), text(String.valueOf(userNumber)),text(day + " "+ month + "," + year), text(hobbies),text(currentAddress));
+                text(gender), text(String.valueOf(userNumber)),text(day + " "+ month + "," + year), text(hobbies),text(currentAddress));
     }
 
 

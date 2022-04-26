@@ -1,11 +1,13 @@
-package guru.qa;
+package tests.lesson4;
 
 import com.codeborne.selenide.*;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.lesson4.RegistrationFormPage;
 
 
 public class PracticeFormTest {
@@ -41,7 +43,7 @@ public class PracticeFormTest {
     @Test
     void fillFromTest(){
 
-        RegistrationFormPage  registrationFormPage = new RegistrationFormPage();
+        RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
         registrationFormPage.openPage();
         registrationFormPage.setFirstName(firstName);
@@ -63,8 +65,6 @@ public class PracticeFormTest {
 
 
        }
-
-
 
 
    }

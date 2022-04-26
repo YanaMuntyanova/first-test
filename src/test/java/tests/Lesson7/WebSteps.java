@@ -1,5 +1,4 @@
 package tests.Lesson7;
-
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
