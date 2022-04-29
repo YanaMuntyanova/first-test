@@ -12,15 +12,13 @@ import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
-import java.util.zip.ZipOutputStream;
 
-public class zipParsTest {
+public class ZipParsTest {
 
 ClassLoader cl = getClass().getClassLoader();
 String nameXlsxName = "fileForTest.xlsx";
 String nameCSVName = "csv.csv";
 String namePdfName = "Tickets_451602.pdf";
-
 
     @Test
     void zipReadFileXlsxTest() throws IOException {
@@ -29,15 +27,15 @@ String namePdfName = "Tickets_451602.pdf";
         ZipInputStream is = new ZipInputStream(Objects.requireNonNull(cl.getResourceAsStream("zip/fileForTest.zip")));
         ZipEntry entry;
         while ((entry = is.getNextEntry()) != null) {
+            if (entry.getName().equals(nameXlsxName)) {
 
-            try (InputStream inputStream = zf.getInputStream(entry)) {
-                XLS xls = new XLS(inputStream);
-                String celValue = xls.excel.getSheetAt(0).getRow(2).getCell(0).getStringCellValue();
-                Assertions.assertEquals(celValue, "ЗВК.1");
+                try (InputStream inputStream = zf.getInputStream(entry)) {
+                    XLS xls = new XLS(inputStream);
+                    String celValue = xls.excel.getSheetAt(0).getRow(2).getCell(0).getStringCellValue();
+                    Assertions.assertEquals(celValue, "ЗВК.1");
+                }
             }
-
         }
-
     }
 
     @Test
@@ -47,19 +45,18 @@ String namePdfName = "Tickets_451602.pdf";
         ZipInputStream is = new ZipInputStream(Objects.requireNonNull(cl.getResourceAsStream("zip/csv.zip")));
         ZipEntry entry;
         while ((entry = is.getNextEntry()) != null) {
+            if (entry.getName().equals(nameCSVName)) {
 
-            try (InputStream inputStream = zf.getInputStream(entry)) {
-                CSVReader reader = new CSVReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-                List<String[]> content  =reader.readAll();
-                org.assertj.core.api.Assertions.assertThat(content).contains(
-                        new String[]{"Небо","Синее"},
-                        new String[]{"Трава","Зеленая"}
-                );
-
+                try (InputStream inputStream = zf.getInputStream(entry)) {
+                    CSVReader reader = new CSVReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+                    List<String[]> content = reader.readAll();
+                    org.assertj.core.api.Assertions.assertThat(content).contains(
+                            new String[]{"Небо", "Синее"},
+                            new String[]{"Трава", "Зеленая"}
+                    );
+                }
             }
-
         }
-
     }
 
     @Test
@@ -70,18 +67,14 @@ String namePdfName = "Tickets_451602.pdf";
         ZipEntry entry;
 
         while ((entry = is.getNextEntry()) != null) {
-
-            try (InputStream inputStream = zf.getInputStream(entry)) {
-                PDF pdf = new PDF(inputStream);
-                Assertions.assertEquals(3,pdf.numberOfPages);
-
+            if (entry.getName().equals(namePdfName)) {
+                try (InputStream inputStream = zf.getInputStream(entry)) {
+                    PDF pdf = new PDF(inputStream);
+                    Assertions.assertEquals(3, pdf.numberOfPages);
+                }
             }
 
         }
-
     }
-
-
-
 
 }
